@@ -1,6 +1,6 @@
 Species seeded: 148
-Moves seeded: 135
-Learnset rows: 2431
+Moves seeded: 133
+Learnset rows: 2416
 
 Species excluded (no supported moves): ['metapod', 'kakuna', 'ditto']
 
@@ -40,7 +40,6 @@ Moves seeded with secondary effects STRIPPED (engine cannot model them yet):
   meteor-mash: stat change
   mud-shot: stat change
   mud-slap: stat change
-  overheat: stat change
   psybeam: ailment 'confusion'
   psychic: stat change
   rapid-spin: stat change
@@ -56,7 +55,6 @@ Moves seeded with secondary effects STRIPPED (engine cannot model them yet):
   slash: high crit rate
   steel-wing: stat change
   stomp: flinch
-  superpower: stat change
   tri-attack: ailment 'unknown'
   twister: flinch
   water-pulse: ailment 'confusion'
@@ -167,6 +165,7 @@ Moves excluded:
   nightmare: status move with unsupported effect (nightmare)
   odor-sleuth: status move with unsupported effect (no-type-immunity)
   outrage: engine does not support this mechanic yet (blocklist)
+  overheat: engine does not support this mechanic yet (blocklist)
   perish-song: status move with unsupported effect (perish-song)
   petal-dance: engine does not support this mechanic yet (blocklist)
   pin-missile: engine does not support this mechanic yet (blocklist)
@@ -215,6 +214,7 @@ Moves excluded:
   substitute: category 'unique' not supported
   sunny-day: category 'whole-field-effect' not supported
   super-fang: no fixed base power
+  superpower: engine does not support this mechanic yet (blocklist)
   supersonic: status move with unsupported effect (confusion)
   swagger: category 'swagger' not supported
   swallow: category 'heal' not supported

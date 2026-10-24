@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 One-time generator: PokeAPI -> Flyway migration (V2__seed_gen1_firered.sql).
 
@@ -63,6 +63,8 @@ UNSUPPORTED_MOVES = {
     # self-KO, delayed, reflect-damage
     "self-destruct", "explosion", "future-sight", "doom-desire", "counter", "mirror-coat",
     "struggle",
+    # the stat drop is the move's cost; without stat stages they would be strictly better than their peers
+    "overheat", "superpower",
 }
 
 LEARN_METHODS = {"level-up", "machine", "tutor"}   # egg moves are not learnable on a caught Pokemon
@@ -330,6 +332,18 @@ def format_report(report):
     return "\n".join(lines) + "\n"
 
 
+def sanity_warnings(report):
+    """A silent over-filter once cost us most of the moves; make that loud next time."""
+    warnings = []
+    species = max(report["species"], 1)
+    if report["learnable"] / species < 12:
+        warnings.append(f"only {report['learnable'] / species:.0f} moves per species on average (expected ~15-30 with the current engine scope). "
+                        "Check the exclusion reasons in the report: a category name may not match the API.")
+    if report["moves"] < 100:
+        warnings.append(f"only {report['moves']} moves seeded (expected 120+).")
+    return warnings
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--dex-max", type=int, default=151)
@@ -345,8 +359,9 @@ def main():
     args.report.write_text(format_report(report), encoding="utf-8")
     print(f"Wrote {args.out}\nWrote {args.report}\n"
           f"{report['species']} species, {report['moves']} moves, {report['learnable']} learnset rows", file=sys.stderr)
+    for warning in sanity_warnings(report):
+        print(f"WARNING: {warning}", file=sys.stderr)
 
 
 if __name__ == "__main__":
     main()
-

@@ -72,7 +72,7 @@ class LearnsetTest(unittest.TestCase):
 
 class MoveRewindTest(unittest.TestCase):
     def test_thunderbolt_gets_its_gen3_power(self):
-        tb = move(85, "thunderbolt", "electric", 90, 100, 15, "special", "damage+ailment", "paralysis", 10,
+        tb = move(85, "thunderbolt", "electric", 90, 100, 15, "special", "damage-ailment", "paralysis", 10,
                   past_values=[{"power": 95, "accuracy": None, "pp": None, "type": None,
                                 "version_group": named("black-2-white-2")}])
         self.assertEqual(95, g.resolve_move_values(tb, FRLG)["power"])
@@ -104,7 +104,7 @@ class MoveRowTest(unittest.TestCase):
 
     def test_secondary_status_effect_kept(self):
         r, reason, stripped = self.row(move(85, "thunderbolt", "electric", 95, 100, 15, "special",
-                                            "damage+ailment", "paralysis", 10))
+                                            "damage-ailment", "paralysis", 10))
         self.assertIsNone(reason)
         self.assertEqual(("PARALYSIS", 10), (r["ailment"], r["ailment_chance"]))
         self.assertEqual([], stripped)
@@ -119,12 +119,12 @@ class MoveRowTest(unittest.TestCase):
         self.assertIn("unsupported effect", reason)
 
     def test_unsupported_secondary_ailment_is_stripped_and_reported(self):
-        r, _, stripped = self.row(move(83, "fire-spin", "fire", 15, 70, 15, "special", "damage+ailment", "trap", 100))
+        r, _, stripped = self.row(move(83, "fire-spin", "fire", 15, 70, 15, "special", "damage-ailment", "trap", 100))
         self.assertEqual("NONE", r["ailment"])
         self.assertIn("ailment 'trap'", stripped)
 
     def test_stat_change_and_flinch_are_reported(self):
-        r, _, stripped = self.row(move(94, "psychic", "psychic", 90, 100, 10, "special", "damage+lower", flinch=10))
+        r, _, stripped = self.row(move(94, "psychic", "psychic", 90, 100, 10, "special", "damage-lower", flinch=10))
         self.assertIsNotNone(r)
         self.assertEqual(["stat change", "flinch"], stripped)
 
@@ -155,11 +155,11 @@ class EndToEndTest(unittest.TestCase):
                         past_types=[{"generation": named("generation-v"), "types": type_slots("normal")}]),
                 pokemon(3, "ditto-like", ["normal"], [("solar-beam", "level-up")]),   # only unsupported moves
                 pokemon(4, "farfetchd", ["normal", "flying"], [("psychic", "machine")])]
-        moves = [move(85, "thunderbolt", "electric", 90, 100, 15, "special", "damage+ailment", "paralysis", 10,
+        moves = [move(85, "thunderbolt", "electric", 90, 100, 15, "special", "damage-ailment", "paralysis", 10,
                       past_values=[{"power": 95, "accuracy": None, "pp": None, "type": None,
                                     "version_group": named("black-2-white-2")}]),
                  move(92, "toxic", "poison", None, 90, 10, "status", "ailment", "poison"),
-                 move(94, "psychic", "psychic", 90, 100, 10, "special", "damage+lower"),
+                 move(94, "psychic", "psychic", 90, 100, 10, "special", "damage-lower"),
                  move(76, "solar-beam", "grass", 120, 100, 10, "special", "damage")]
         self.db = {f"pokemon/{p['id']}": p for p in mons} | {f"move/{m['name']}": m for m in moves}
 
@@ -186,6 +186,36 @@ class EndToEndTest(unittest.TestCase):
         self.assertEqual("'farfetch''d'", g.sql_value("farfetch'd"))
         self.assertEqual("NULL", g.sql_value(None))
         self.assertEqual("42", g.sql_value(42))
+
+
+class SanityWarningTest(unittest.TestCase):
+    def test_overfiltering_is_flagged(self):
+        report = {"species": 147, "moves": 77, "learnable": 1457}
+        self.assertEqual(2, len(g.sanity_warnings(report)))
+
+    def test_healthy_run_has_no_warnings(self):
+        self.assertEqual([], g.sanity_warnings({"species": 147, "moves": 140, "learnable": 5000}))
+
+
+FIXTURES = Path(__file__).resolve().parent / "fixtures"
+
+
+@unittest.skipUnless((FIXTURES / "move_thunderbolt.json").exists(), "copy real responses into tools/fixtures/ first")
+class RealApiContractTest(unittest.TestCase):
+    """Runs against REAL PokeAPI responses (copied from tools/.cache), not our assumptions about them."""
+
+    @staticmethod
+    def load(name):
+        import json
+        return json.loads((FIXTURES / name).read_text(encoding="utf-8"))
+
+    def test_thunderbolt_from_real_response(self):
+        row, reason, _ = g.build_move_row(self.load("move_thunderbolt.json"), FRLG, 3)
+        self.assertIsNone(reason)
+        self.assertEqual(("ELECTRIC", 95, "PARALYSIS", 10), (row["type"], row["power"], row["ailment"], row["ailment_chance"]))
+
+    def test_clefairy_from_real_response(self):
+        self.assertEqual(["NORMAL"], g.resolve_types(self.load("pokemon_35.json"), 3))
 
 
 if __name__ == "__main__":
