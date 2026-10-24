@@ -1,0 +1,237 @@
+Species seeded: 148
+Moves seeded: 135
+Learnset rows: 2431
+
+Species excluded (no supported moves): ['metapod', 'kakuna', 'ditto']
+
+Species whose types were rewound to the target generation:
+  clefairy: ['FAIRY'] -> NORMAL/None
+  clefable: ['FAIRY'] -> NORMAL/None
+  jigglypuff: ['NORMAL', 'FAIRY'] -> NORMAL/None
+  wigglytuff: ['NORMAL', 'FAIRY'] -> NORMAL/None
+  mr-mime: ['PSYCHIC', 'FAIRY'] -> PSYCHIC/None
+
+Moves seeded with secondary effects STRIPPED (engine cannot model them yet):
+  acid: stat change
+  air-cutter: high crit rate
+  ancient-power: stat change
+  astonish: flinch
+  aurora-beam: stat change
+  bind: ailment 'trap'
+  bite: flinch
+  bone-club: flinch
+  bubble: stat change
+  bubble-beam: stat change
+  clamp: ailment 'trap'
+  confusion: ailment 'confusion'
+  constrict: stat change
+  crabhammer: high crit rate
+  cross-chop: high crit rate
+  crunch: stat change
+  dizzy-punch: ailment 'confusion'
+  dynamic-punch: ailment 'confusion'
+  fire-spin: ailment 'trap'
+  headbutt: flinch
+  hyper-fang: flinch
+  icy-wind: stat change
+  iron-tail: stat change
+  karate-chop: high crit rate
+  metal-claw: stat change
+  meteor-mash: stat change
+  mud-shot: stat change
+  mud-slap: stat change
+  overheat: stat change
+  psybeam: ailment 'confusion'
+  psychic: stat change
+  rapid-spin: stat change
+  razor-leaf: high crit rate
+  rock-slide: flinch
+  rock-smash: stat change
+  rock-tomb: stat change
+  rolling-kick: flinch
+  sand-tomb: ailment 'trap'
+  shadow-ball: stat change
+  signal-beam: ailment 'confusion'
+  silver-wind: stat change
+  slash: high crit rate
+  steel-wing: stat change
+  stomp: flinch
+  superpower: stat change
+  tri-attack: ailment 'unknown'
+  twister: flinch
+  water-pulse: ailment 'confusion'
+  waterfall: flinch
+  wrap: ailment 'trap'
+
+Moves excluded:
+  absorb: category 'damage-heal' not supported
+  acid-armor: category 'net-good-stats' not supported
+  agility: category 'net-good-stats' not supported
+  amnesia: category 'net-good-stats' not supported
+  aromatherapy: category 'unique' not supported
+  attract: status move with unsupported effect (infatuation)
+  barrage: engine does not support this mechanic yet (blocklist)
+  barrier: category 'net-good-stats' not supported
+  baton-pass: category 'unique' not supported
+  belly-drum: category 'unique' not supported
+  blast-burn: engine does not support this mechanic yet (blocklist)
+  block: category 'unique' not supported
+  bone-rush: engine does not support this mechanic yet (blocklist)
+  bonemerang: engine does not support this mechanic yet (blocklist)
+  bounce: engine does not support this mechanic yet (blocklist)
+  bulk-up: category 'net-good-stats' not supported
+  calm-mind: category 'net-good-stats' not supported
+  camouflage: category 'unique' not supported
+  charge: category 'net-good-stats' not supported
+  comet-punch: engine does not support this mechanic yet (blocklist)
+  confuse-ray: status move with unsupported effect (confusion)
+  conversion: category 'unique' not supported
+  conversion-2: category 'unique' not supported
+  cosmic-power: category 'net-good-stats' not supported
+  counter: engine does not support this mechanic yet (blocklist)
+  curse: category 'unique' not supported
+  defense-curl: category 'net-good-stats' not supported
+  destiny-bond: category 'unique' not supported
+  detect: category 'unique' not supported
+  dig: engine does not support this mechanic yet (blocklist)
+  disable: category 'unique' not supported
+  dive: engine does not support this mechanic yet (blocklist)
+  double-kick: engine does not support this mechanic yet (blocklist)
+  double-slap: engine does not support this mechanic yet (blocklist)
+  double-team: category 'net-good-stats' not supported
+  dragon-dance: category 'net-good-stats' not supported
+  dragon-rage: no fixed base power
+  dream-eater: engine does not support this mechanic yet (blocklist)
+  encore: category 'unique' not supported
+  endeavor: no fixed base power
+  endure: category 'unique' not supported
+  explosion: engine does not support this mechanic yet (blocklist)
+  facade: engine does not support this mechanic yet (blocklist)
+  fake-out: engine does not support this mechanic yet (blocklist)
+  fake-tears: category 'net-good-stats' not supported
+  false-swipe: engine does not support this mechanic yet (blocklist)
+  feather-dance: category 'net-good-stats' not supported
+  fissure: category 'ohko' not supported
+  flail: engine does not support this mechanic yet (blocklist)
+  flash: category 'net-good-stats' not supported
+  flatter: category 'swagger' not supported
+  fly: engine does not support this mechanic yet (blocklist)
+  focus-energy: category 'unique' not supported
+  focus-punch: engine does not support this mechanic yet (blocklist)
+  follow-me: category 'unique' not supported
+  foresight: status move with unsupported effect (no-type-immunity)
+  frenzy-plant: engine does not support this mechanic yet (blocklist)
+  frustration: engine does not support this mechanic yet (blocklist)
+  fury-attack: engine does not support this mechanic yet (blocklist)
+  fury-cutter: engine does not support this mechanic yet (blocklist)
+  fury-swipes: engine does not support this mechanic yet (blocklist)
+  future-sight: engine does not support this mechanic yet (blocklist)
+  giga-drain: category 'damage-heal' not supported
+  growl: category 'net-good-stats' not supported
+  growth: category 'net-good-stats' not supported
+  grudge: category 'unique' not supported
+  guillotine: category 'ohko' not supported
+  hail: category 'whole-field-effect' not supported
+  harden: category 'net-good-stats' not supported
+  haze: category 'whole-field-effect' not supported
+  helping-hand: category 'unique' not supported
+  hidden-power: engine does not support this mechanic yet (blocklist)
+  horn-drill: category 'ohko' not supported
+  hydro-cannon: engine does not support this mechanic yet (blocklist)
+  hyper-beam: engine does not support this mechanic yet (blocklist)
+  imprison: category 'unique' not supported
+  ingrain: status move with unsupported effect (ingrain)
+  kinesis: category 'net-good-stats' not supported
+  leech-life: category 'damage-heal' not supported
+  leech-seed: status move with unsupported effect (leech-seed)
+  leer: category 'net-good-stats' not supported
+  light-screen: category 'field-effect' not supported
+  lock-on: category 'unique' not supported
+  low-kick: no fixed base power
+  magnitude: engine does not support this mechanic yet (blocklist)
+  mean-look: category 'unique' not supported
+  meditate: category 'net-good-stats' not supported
+  mega-drain: category 'damage-heal' not supported
+  memento: category 'unique' not supported
+  metal-sound: category 'net-good-stats' not supported
+  metronome: category 'unique' not supported
+  mimic: category 'unique' not supported
+  mind-reader: category 'unique' not supported
+  minimize: category 'net-good-stats' not supported
+  mirror-coat: engine does not support this mechanic yet (blocklist)
+  mirror-move: category 'unique' not supported
+  mist: category 'field-effect' not supported
+  moonlight: category 'heal' not supported
+  mud-sport: category 'whole-field-effect' not supported
+  night-shade: no fixed base power
+  nightmare: status move with unsupported effect (nightmare)
+  odor-sleuth: status move with unsupported effect (no-type-immunity)
+  outrage: engine does not support this mechanic yet (blocklist)
+  perish-song: status move with unsupported effect (perish-song)
+  petal-dance: engine does not support this mechanic yet (blocklist)
+  pin-missile: engine does not support this mechanic yet (blocklist)
+  protect: category 'unique' not supported
+  psych-up: category 'unique' not supported
+  pursuit: engine does not support this mechanic yet (blocklist)
+  rage: engine does not support this mechanic yet (blocklist)
+  rain-dance: category 'whole-field-effect' not supported
+  recover: category 'heal' not supported
+  recycle: category 'unique' not supported
+  reflect: category 'field-effect' not supported
+  refresh: category 'unique' not supported
+  rest: category 'unique' not supported
+  return: engine does not support this mechanic yet (blocklist)
+  revenge: engine does not support this mechanic yet (blocklist)
+  reversal: engine does not support this mechanic yet (blocklist)
+  roar: category 'force-switch' not supported
+  role-play: category 'unique' not supported
+  rollout: engine does not support this mechanic yet (blocklist)
+  safeguard: category 'field-effect' not supported
+  sand-attack: category 'net-good-stats' not supported
+  sandstorm: category 'whole-field-effect' not supported
+  scary-face: category 'net-good-stats' not supported
+  screech: category 'net-good-stats' not supported
+  seismic-toss: no fixed base power
+  self-destruct: engine does not support this mechanic yet (blocklist)
+  sharpen: category 'net-good-stats' not supported
+  sheer-cold: category 'ohko' not supported
+  skill-swap: category 'unique' not supported
+  skull-bash: engine does not support this mechanic yet (blocklist)
+  sky-attack: engine does not support this mechanic yet (blocklist)
+  sleep-talk: category 'unique' not supported
+  smokescreen: category 'net-good-stats' not supported
+  snatch: category 'unique' not supported
+  snore: engine does not support this mechanic yet (blocklist)
+  soft-boiled: category 'heal' not supported
+  solar-beam: engine does not support this mechanic yet (blocklist)
+  sonic-boom: no fixed base power
+  spike-cannon: engine does not support this mechanic yet (blocklist)
+  spikes: category 'field-effect' not supported
+  spit-up: engine does not support this mechanic yet (blocklist)
+  spite: category 'unique' not supported
+  splash: category 'unique' not supported
+  stockpile: category 'unique' not supported
+  string-shot: category 'net-good-stats' not supported
+  substitute: category 'unique' not supported
+  sunny-day: category 'whole-field-effect' not supported
+  super-fang: no fixed base power
+  supersonic: status move with unsupported effect (confusion)
+  swagger: category 'swagger' not supported
+  swallow: category 'heal' not supported
+  sweet-scent: category 'net-good-stats' not supported
+  swords-dance: category 'net-good-stats' not supported
+  synthesis: category 'heal' not supported
+  tail-whip: category 'net-good-stats' not supported
+  taunt: category 'unique' not supported
+  teleport: category 'unique' not supported
+  thrash: engine does not support this mechanic yet (blocklist)
+  tickle: category 'net-good-stats' not supported
+  torment: status move with unsupported effect (torment)
+  transform: category 'unique' not supported
+  trick: category 'unique' not supported
+  twineedle: engine does not support this mechanic yet (blocklist)
+  uproar: engine does not support this mechanic yet (blocklist)
+  water-sport: category 'whole-field-effect' not supported
+  whirlwind: category 'force-switch' not supported
+  withdraw: category 'net-good-stats' not supported
+  yawn: status move with unsupported effect (yawn)

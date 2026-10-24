@@ -5,3 +5,7 @@ target/
 .DS_Store
 .env
 *.log
+
+# raw PokeAPI responses cached by tools/generate_seed.py
+tools/.cache/
+__pycache__/
