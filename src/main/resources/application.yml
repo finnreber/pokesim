@@ -15,6 +15,12 @@ spring:
     problemdetails:
       enabled: true   # Spring's own errors (bad params etc.) use the same RFC 9457 format
 
+app:
+  jwt:
+    # HS256 needs >= 32 bytes. This default is for local dev ONLY: set JWT_SECRET in every real environment.
+    secret: ${JWT_SECRET:dev-only-secret-do-not-use-in-production-0123456789}
+    ttl-minutes: ${JWT_TTL_MINUTES:60}
+
 management:
   endpoints:
     web:

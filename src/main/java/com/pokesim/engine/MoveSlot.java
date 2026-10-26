@@ -12,5 +12,6 @@ public final class MoveSlot {
 
     public Move move() { return move; }
     public int pp() { return pp; }
+    void setPp(int pp) { this.pp = pp; }
     public void usePp() { if (pp > 0) pp--; }
 }

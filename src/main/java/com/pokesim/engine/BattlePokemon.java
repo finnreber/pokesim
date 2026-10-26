@@ -28,6 +28,7 @@ public final class BattlePokemon {
         return new BattlePokemon(species, level, rules.computeStats(species.baseStats(), level), moves);
     }
 
+    public Species species() { return species; }
     public String name() { return species.name(); }
     public List<PokemonType> types() { return species.types(); }
     public int level() { return level; }
@@ -46,6 +47,14 @@ public final class BattlePokemon {
         int dealt = Math.min(Math.max(amount, 0), currentHp);
         currentHp -= dealt;
         return dealt;
+    }
+
+    /** Used only when rebuilding a saved battle (see BattleSnapshots). */
+    void restoreState(int currentHp, StatusCondition status, int sleepTurns, int toxicCounter) {
+        this.currentHp = currentHp;
+        this.status = status;
+        this.sleepTurns = sleepTurns;
+        this.toxicCounter = toxicCounter;
     }
 
     public void setStatus(StatusCondition status) {

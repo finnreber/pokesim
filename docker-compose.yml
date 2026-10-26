@@ -21,6 +21,7 @@ services:
       DB_URL: jdbc:postgresql://db:5432/pokesim
       DB_USER: pokesim
       DB_PASSWORD: pokesim
+      JWT_SECRET: local-compose-secret-change-me-0123456789abcdef
     ports: ["8080:8080"]
 
 volumes:

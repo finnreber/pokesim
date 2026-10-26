@@ -68,6 +68,15 @@ public final class BattleEngine {
         return events;
     }
 
+    /** A player gives up: the opponent wins immediately. */
+    public List<BattleEvent> forfeit(Battle battle, Side side) {
+        if (battle.status() == BattleStatus.FINISHED) throw new IllegalActionException("The battle is already over");
+        Side winner = side.opponent();
+        battle.finish(winner);
+        return new ArrayList<>(List.of(new BattleEvent(EventType.BATTLE_END, winner,
+                side + " forfeited. " + winner + " wins the battle!", 0)));
+    }
+
     // ------------------------------------------------------------------ validation
 
     private void requireStatus(Battle battle, BattleStatus expected) {
@@ -76,7 +85,8 @@ public final class BattleEngine {
         }
     }
 
-    private void validate(Battle battle, Side side, Action action) {
+    /** Rejects an illegal action right when it is submitted, instead of when the turn resolves. */
+    public void validate(Battle battle, Side side, Action action) {
         if (action == null) throw new IllegalActionException(side + " must submit an action");
         BattleSide bs = battle.side(side);
         switch (action) {

@@ -24,6 +24,15 @@ public final class Battle {
     /** Null while in progress, and also null for a draw (check status == FINISHED). */
     public Side winner() { return winner; }
 
+    /** Used only when rebuilding a saved battle (see BattleSnapshots). */
+    void restore(int turn, BattleStatus status, java.util.Collection<Side> pending, Side winner) {
+        this.turn = turn;
+        this.status = status;
+        this.pendingReplacements.clear();
+        this.pendingReplacements.addAll(pending);
+        this.winner = winner;
+    }
+
     void advanceTurn() { turn++; }
     void setStatus(BattleStatus status) { this.status = status; }
     void finish(Side winner) {
