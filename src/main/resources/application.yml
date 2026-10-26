@@ -21,6 +21,12 @@ app:
     secret: ${JWT_SECRET:dev-only-secret-do-not-use-in-production-0123456789}
     ttl-minutes: ${JWT_TTL_MINUTES:60}
 
+  rate-limit:
+    enabled: true
+    auth:     { requests: 10,  per-seconds: 60 }    # register + login, per IP
+    simulate: { requests: 6,   per-seconds: 60 }    # public simulation, per IP
+    api:      { requests: 120, per-seconds: 60 }    # everything else under /api, per IP
+
 management:
   endpoints:
     web:
@@ -29,3 +35,5 @@ management:
 
 server:
   port: ${PORT:8080}
+  # Behind Render's proxy: restore the real client IP (for rate limiting) and the https scheme (for Swagger's URLs).
+  forward-headers-strategy: native

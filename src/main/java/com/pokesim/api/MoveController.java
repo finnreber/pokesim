@@ -1,5 +1,6 @@
 package com.pokesim.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.pokesim.api.dto.MoveResponse;
 import com.pokesim.api.dto.PageResponse;
 import com.pokesim.service.DexService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Dex", description = "Moves (public, read-only)")
 @RestController
 @RequestMapping("/api/v1/moves")
 public class MoveController {

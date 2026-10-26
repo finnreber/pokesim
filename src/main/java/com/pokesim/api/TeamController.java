@@ -1,5 +1,8 @@
 package com.pokesim.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.Parameter;
 import com.pokesim.api.dto.PageResponse;
 import com.pokesim.api.dto.TeamRequest;
 import com.pokesim.api.dto.TeamResponse;
@@ -25,6 +28,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /** Every route here requires a valid token; the user id always comes from the token, never from the request. */
+@Tag(name = "Teams", description = "Build and manage your teams (max 6 Pokemon, 4 moves each, legal FireRed moves only)")
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/api/v1/teams")
 public class TeamController {
@@ -33,32 +38,32 @@ public class TeamController {
     public TeamController(TeamService teams) { this.teams = teams; }
 
     @PostMapping
-    public ResponseEntity<TeamResponse> create(@AuthenticationPrincipal Jwt jwt, @Valid @RequestBody TeamRequest request) {
+    public ResponseEntity<TeamResponse> create(@Parameter(hidden = true) @AuthenticationPrincipal Jwt jwt, @Valid @RequestBody TeamRequest request) {
         TeamResponse created = teams.create(userId(jwt), request);
         return ResponseEntity.created(URI.create("/api/v1/teams/" + created.id())).body(created);
     }
 
     @GetMapping
     public PageResponse<TeamResponse> list(
-            @AuthenticationPrincipal Jwt jwt,
+            @Parameter(hidden = true) @AuthenticationPrincipal Jwt jwt,
             @RequestParam(defaultValue = "0") @Min(0) int page,
             @RequestParam(defaultValue = "20") @Min(1) @Max(100) int size) {
         return teams.list(userId(jwt), page, size);
     }
 
     @GetMapping("/{id}")
-    public TeamResponse get(@AuthenticationPrincipal Jwt jwt, @PathVariable UUID id) {
+    public TeamResponse get(@Parameter(hidden = true) @AuthenticationPrincipal Jwt jwt, @PathVariable UUID id) {
         return teams.get(userId(jwt), id);
     }
 
     @PutMapping("/{id}")
-    public TeamResponse update(@AuthenticationPrincipal Jwt jwt, @PathVariable UUID id, @Valid @RequestBody TeamRequest request) {
+    public TeamResponse update(@Parameter(hidden = true) @AuthenticationPrincipal Jwt jwt, @PathVariable UUID id, @Valid @RequestBody TeamRequest request) {
         return teams.update(userId(jwt), id, request);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@AuthenticationPrincipal Jwt jwt, @PathVariable UUID id) {
+    public void delete(@Parameter(hidden = true) @AuthenticationPrincipal Jwt jwt, @PathVariable UUID id) {
         teams.delete(userId(jwt), id);
     }
 

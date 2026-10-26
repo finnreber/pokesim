@@ -1,5 +1,6 @@
 package com.pokesim.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.pokesim.api.dto.LoginRequest;
 import com.pokesim.api.dto.RegisterRequest;
 import com.pokesim.api.dto.TokenResponse;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Auth", description = "Create an account and get an access token")
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {

@@ -1,5 +1,6 @@
 package com.pokesim.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.pokesim.api.dto.MoveResponse;
 import com.pokesim.api.dto.PageResponse;
 import com.pokesim.api.dto.SpeciesDetail;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Dex", description = "Species and what they can learn in FireRed (public, read-only)")
 @RestController
 @RequestMapping("/api/v1/species")
 public class SpeciesController {
